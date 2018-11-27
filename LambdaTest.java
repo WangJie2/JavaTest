@@ -151,6 +151,15 @@ public class LambdaTest {
 
     @Test
     public void test6(){
-        System.out.println(getSum(1,-1));
+        int s=2330;
+        int b=221;
+  /*      String d="233";
+        System.out.println(d.equals(String.valueOf(s)));*/
+        System.out.println(s&1);
+        if((s&1)==1){
+            System.out.println("奇数");
+        }else{
+            System.out.println("偶数");
+        }
     }
 }

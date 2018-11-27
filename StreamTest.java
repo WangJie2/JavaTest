@@ -3,6 +3,7 @@ package wj.test;
 import org.junit.Test;
 import wj.other.Employee;
 
+import java.lang.reflect.Constructor;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -386,6 +387,19 @@ public class StreamTest {
         list.parallelStream().mapToInt(value -> value).sum();
         long end1 = System.currentTimeMillis();
         System.out.println("并行流时间："+(end1-begin1));
+    }
+
+    @Test
+    public void test11(){
+        Class<TestUtil> utilClass = TestUtil.class;
+        try {
+            Constructor<TestUtil> constructor = utilClass.getDeclaredConstructor(null);
+            constructor.setAccessible(true);
+            TestUtil util = constructor.newInstance(null);
+            System.out.println(util.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
