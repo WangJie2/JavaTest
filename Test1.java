@@ -1,5 +1,7 @@
 package wj.test;
 
+import org.junit.Test;
+
 /**
  * Created by WangJie on 2018/10/9.
  */
