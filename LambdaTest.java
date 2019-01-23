@@ -162,4 +162,8 @@ public class LambdaTest {
             System.out.println("偶数");
         }
     }
+    @Test
+    public void test7(){
+
+    }
 }
