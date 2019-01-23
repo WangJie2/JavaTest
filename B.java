@@ -1,5 +1,7 @@
 package wj.test;
 
+import org.junit.Test;
+
 import java.io.Serializable;
 import java.util.Hashtable;
 
@@ -28,6 +30,11 @@ public class B implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Test
+    public void test4() {
+        System.out.println("4");
     }
 }
 
