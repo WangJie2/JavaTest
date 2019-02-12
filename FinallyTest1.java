@@ -1,11 +1,9 @@
 package wj.test;
 
+import org.junit.Test;
 import wj.other.Employee;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FinallyTest1 {
 
@@ -50,6 +48,21 @@ public class FinallyTest1 {
         }
         
         return 111;
+    }
+    @Test
+    public void test2(){
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        list.add(0);
+        list.add(1);
+        list.add(2);
+        Iterator<Integer> iterator = list.iterator();
+        while(iterator.hasNext()){
+            Integer integer = iterator.next();
+            if(integer==1)
+//                iterator.remove();
+                list.remove(1);
+        }
+
     }
     
 }
