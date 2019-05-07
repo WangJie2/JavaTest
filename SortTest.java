@@ -72,6 +72,31 @@ public class SortTest {
         }
     }
 
+    private static void bubbleSort1(int array[]) {
+        //记录最后一次交换的位置
+        int lastExchangeIndex = 0;
+        //无序数列的边界，每次比较只需要比到这里为止
+        int sortBorder = array.length - 1;
+        for (int i = 0; i < array.length; i++) {
+            //有序标记，每一轮的初始是true
+            boolean isSorted = true;
+            for (int j = 0; j < sortBorder; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j, j + 1);
+                    //有元素交换，所以不是有序，标记变为false
+                    isSorted = false;
+                    //把无序数列的边界更新为最后一次交换元素的位置
+                    lastExchangeIndex = j;
+                }
+            }
+            sortBorder = lastExchangeIndex;
+            if (isSorted) {
+                break;
+            }
+        }
+    }
+
+
     /**
      * 2.选择排序（Selection Sort） O(n^2)  O(1) 不稳定
      * 选择排序(Selection-sort)是一种简单直观的排序算法。
@@ -87,6 +112,7 @@ public class SortTest {
      *
      * @param array
      */
+
     public static void selectionSort(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
@@ -288,6 +314,7 @@ public class SortTest {
      * 由于交换后新的堆顶R[1]可能违反堆的性质，因此需要对当前无序区(R1,R2,……Rn-1)调整为新堆，
      * 然后再次将R[1]与无序区最后一个元素交换，得到新的无序区(R1,R2….Rn-2)和新的有序区(Rn-1,Rn)。
      * 不断重复此过程直到有序区的元素个数为n-1，则整个排序过程完成。
+     * 0.416   0.645 0.59
      *
      * @param arr
      */

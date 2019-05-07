@@ -1,7 +1,7 @@
 package wj.test;
 
 public class Singleton {
-    private static Singleton uniqueInstance;
+  /*  private static Singleton uniqueInstance;
 
     private Singleton(){
     }
@@ -18,5 +18,18 @@ public class Singleton {
             }
         }
         return uniqueInstance;
+    }*/
+  private static class LazyHolder {
+      private static final Singleton INSTANCE = new Singleton();
+      static{
+          System.out.println("ffff");
+      }
+  }
+    private Singleton (){
+        System.out.println("初始化");
+    }
+    public static Singleton getInstance() {
+        System.out.println("获取");
+        return LazyHolder.INSTANCE;
     }
 }
