@@ -108,6 +108,7 @@ public class Test1 {
     @Test
     public void test6() {
         System.out.println("s");
+        System.out.println("d");
     }
 }
 
