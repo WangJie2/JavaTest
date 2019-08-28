@@ -28,7 +28,25 @@ public class StreamTest {
 
     @Test
     public void test() {
-        employees.stream().filter(employee -> employee.getAge() > 28).forEach(System.out::println);
+//        employees.stream().filter(employee -> employee.getAge() > 28).forEach(System.out::println);
+        Optional<Employee> first = employees.stream().filter(employee -> "004".equals(employee.getNo())).findFirst();
+        Employee o = null;
+        if (first.isPresent()) {
+            o = first.get();
+            System.out.println(o);
+        }else{
+            System.out.println("hase no");
+        }
+        LinkedList<Employee> h = new LinkedList<>();
+        Iterator<Employee> iterator = employees.iterator();
+        while (iterator.hasNext()) {
+            Employee next = iterator.next();
+            h.offer(next);
+            if(h.contains(o)){
+                System.out.println(o);
+                break;
+            }
+        }
     }
 
 
@@ -221,7 +239,7 @@ public class StreamTest {
 
     //3. 终止操作
     /*
-		归约
+        归约
 		reduce(T identity, BinaryOperator) / reduce(BinaryOperator) ——可以将流中元素反复结合起来，得到一个值。
 	 */
     @Test
@@ -282,7 +300,7 @@ public class StreamTest {
     }
 
     @Test
-    public void test8(){
+    public void test8() {
         Optional<Double> max = employees.stream()
                 .map(Employee::getSalary)
                 .collect(Collectors.maxBy(Double::compare));
@@ -319,7 +337,7 @@ public class StreamTest {
 
     //分组分区
     @Test
-    public void test9(){
+    public void test9() {
         //分组
         Map<String, List<Employee>> map = employees.stream()
                 .collect(Collectors.groupingBy(Employee::getDept));
@@ -329,7 +347,7 @@ public class StreamTest {
         System.out.println("------------------groupingBy--------------------------");
         //分组后计算个数
         Map<String, Long> map1 = employees.stream()
-                .collect(Collectors.groupingBy(Employee::getDept,Collectors.counting()));
+                .collect(Collectors.groupingBy(Employee::getDept, Collectors.counting()));
 
         System.out.println(map1);
 
@@ -342,7 +360,7 @@ public class StreamTest {
         System.out.println("---------------groupingBy-------joining----------------------");
         //分组后,名字串联
         Map<String, String> map4 = employees.stream()
-                .collect(Collectors.groupingBy(Employee::getDept,Collectors.collectingAndThen(Collectors.toList(),employees1 -> employees1.stream().map(Employee::getName).collect(Collectors.joining("-")))));
+                .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(Collectors.toList(), employees1 -> employees1.stream().map(Employee::getName).collect(Collectors.joining("-")))));
 
         System.out.println(map4);
 
@@ -358,7 +376,7 @@ public class StreamTest {
         //字符串连接
         String str = employees.stream()
                 .map(Employee::getName)
-                .collect(Collectors.joining("," ));
+                .collect(Collectors.joining(","));
 
         System.out.println(str);
         System.out.println("--------------------reducing------------------------");
@@ -372,25 +390,26 @@ public class StreamTest {
 
     //并行流
     @Test
-    public void test10(){
+    public void test10() {
         List<Integer> list = new ArrayList<>();
         // 将10000-1存入list中
         for (int i = 100000; i >= 1; i--) {
             list.add(i);
-        };
+        }
+        ;
         long begin = System.currentTimeMillis();
         list.stream().mapToInt(value -> value).sum();
         long end = System.currentTimeMillis();
-        System.out.println("顺序流时间："+(end-begin));
+        System.out.println("顺序流时间：" + (end - begin));
 
         long begin1 = System.currentTimeMillis();
         list.parallelStream().mapToInt(value -> value).sum();
         long end1 = System.currentTimeMillis();
-        System.out.println("并行流时间："+(end1-begin1));
+        System.out.println("并行流时间：" + (end1 - begin1));
     }
 
     @Test
-    public void test11(){
+    public void test11() {
         Class<TestUtil> utilClass = TestUtil.class;
         try {
             Constructor<TestUtil> constructor = utilClass.getDeclaredConstructor(null);

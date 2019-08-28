@@ -1,6 +1,7 @@
 package wj.test;
 
 import org.junit.Test;
+import sun.misc.Launcher;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -106,7 +107,71 @@ public class Test1 {
 
     @Test
     public void test6() {
-        LifeCycleChild c = new LifeCycleChild();
+        String a = "计算";
+        String b = "机";
+        String c = a + b;
+        String s1 = new String("计算机");
+        System.out.println(s1.intern() == s1);
+//        String s2 = s1.intern();
+        String s3 = "计算机";
+        System.out.println(c.intern() == s3.intern());
+        System.out.println(c == s3);
+      /*  System.out.println(s2);//计算机
+        System.out.println(s1 == s2);//false，因为一个是堆内存中的String对象一个是常量池中的String对象，
+        System.out.println(s3.intern() == s2);//true，因为两个都是常量池中的String对
+
+        String str1 = "str";
+        String str2 = "ing";
+
+        String str3 = "str" + "ing";//常量池中的对象
+        String str4 = str1 + str2; //在堆上创建的新的对象
+        String str5 = "string";//常量池中的对象
+        System.out.println(str3 == str4);//false
+        System.out.println(str3 == str5);//true
+        System.out.println(str4 == str5);//false*/
+
     }
+
+    @Test
+    public void test7() {
+       /* String s1 = new String("算")+new String("机");
+//        s1.intern();
+        String d="算机";
+//        StringBuilder builder = new StringBuilder("算");
+//        String s1= builder.append("机").toString();
+        System.out.println(s1 == d);*/
+        String s = "ag" + "h";
+        s = s + "a" + "g";
+//        String s = new String("ag") + new String("b");
+        String a = new StringBuilder("ag").append("h").toString();
+        System.out.println(a.intern() == a);
+
+    }
+
+    @Test
+    public void test8() {
+        ClassLoader classLoader = Launcher.class.getClassLoader();
+        System.out.println("");
+    }
+
+    @Test
+    public void test9() {
+        String name1 = "abcd";
+        String name2 = "abcd";
+        System.out.println("执行结果：" +( name1 == name2));
+    }
+
+    @Test
+    public void test10() {
+        List<List<String>> f = new ArrayList<>();
+        List<String> c = new ArrayList<>();
+        c.add("before");
+        f.add(c);
+        c.add("after");
+        System.out.println(f.toString());
+
+
+    }
+
 }
 

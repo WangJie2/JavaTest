@@ -1,9 +1,9 @@
 package wj.test;
 
 public class LifeCycleChild extends LifeCycle{
+    // 静态方法块
     // 静态属性
     private static String name = getName();
-    // 静态方法块
     static {
         System.out.println(name);
         System.out.println("子类静态方法块初始化");
@@ -13,7 +13,7 @@ public class LifeCycleChild extends LifeCycle{
     private String field = getField();
     // 普通方法块
     {
-        System.out.println(field);
+//        System.out.println(field);
         System.out.println("子类普通方法块初始化");
         System.out.println("Field Patch Initial");
     }
