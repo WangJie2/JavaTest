@@ -169,8 +169,14 @@ public class Test1 {
         f.add(c);
         c.add("after");
         System.out.println(f.toString());
+    }
 
-
+    @Test
+    public void test11() {
+        String s1 = "hello";
+        String s3= "hello";
+        String s2 = "world";
+        System.out.println();
     }
 
 }
